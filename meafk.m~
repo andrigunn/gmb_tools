@@ -1,10 +1,7 @@
 close all, clear all, clc
 cd('/Users/andrigun/Dropbox/glac_mass')
-%% Fyrir Vatnajökul
-%load('meafk.mat')
-%% Fyrir Langjökul
-load('Lmeafk.mat')
-meafk = Lmeafk;
+load('meafk.mat')
+load('meafk.mat')
 %%
 close all
 blue = [0 0 1];
@@ -12,9 +9,8 @@ green = [51/255 204/255 51/255];
 red = [255/255 0 0];
 txt_size = 24;
 alpha = 0.05;
-plot_with_trends = 1;
-periods = 1997;
-icecap = 'Langjökull'
+plot_with_trends = 0;
+periods = 1999;
 
 f = figure('Position', [50, 100, 2200, 1200]), hold on;
 subplot(3,4,[1,2,3,5,6,7,9,10,11]),hold on;
@@ -62,13 +58,13 @@ subplot(3,4,[1,2,3,5,6,7,9,10,11]),hold on;
     end
     
     grid on
-    xlim([min(meafk.y) max(meafk.y)])
+    xlim([1992 2018])
     grid on;
     xlabel('Year','FontSize',txt_size);
     ylabel('Specific mass balance (mH2O)','FontSize',txt_size);
     legend([b2 b3 b4],'Winter','Summer','Net')
     
-	hText = text(0.02,1,icecap,'Units','normalized','HorizontalAlignment','left','VerticalAlignment','bottom','FontSize',36);
+	hText = text(0.02,1,'Vatnajökull','Units','normalized','HorizontalAlignment','left','VerticalAlignment','bottom','FontSize',36);
 	hText = text(0.02,0.1,['b_w: ',num2str(nanmean(meafk.bw)),' (',num2str(std(meafk.bw)),') mH2O'],'Units','normalized','HorizontalAlignment','left','VerticalAlignment','bottom','FontSize',28);
 	hText = text(0.02,0.06,['b_n: ',num2str(nanmean(meafk.bn)),' (',num2str(std(meafk.bn)),') mH2O'],'Units','normalized','HorizontalAlignment','left','VerticalAlignment','bottom','FontSize',28);
 	hText = text(0.02,0.02,['b_s: ',num2str(nanmean(meafk.bs)),' (',num2str(std(meafk.bs)),') mH2O'],'Units','normalized','HorizontalAlignment','left','VerticalAlignment','bottom','FontSize',28);
@@ -146,4 +142,4 @@ subplot(3,4,12);
     'YTickLabel'  , [],...
     'LineWidth'   , 1         );
 
-    print(f,['la_mass_balance_w_trend'],'-dpng','-r0')
+    %print(f,['va_mass_balance'],'-dpng','-r0')
